@@ -11,7 +11,6 @@ class Graph():
         self.vertices = set(sum(([e.start, e.end] for e in edges2), []))
 
     def dijkstra(self, source, dest):
-        summ = 0
         assert source in self.vertices
         dist = {vertex: inf for vertex in self.vertices}
         previous = {vertex: None for vertex in self.vertices}
@@ -37,10 +36,9 @@ class Graph():
             s.insert(0, u)
             u = previous[u]
         s.insert(0, u)
-        summ = dist[s[-1]]
         if len(s) < 2:
             raise AssertionError
-        return {'path': s, 'cost': summ}
+        return {'path': s, 'cost': dist[s[-1]]}
 
 
 if __name__ == '__main__':
@@ -64,10 +62,10 @@ if __name__ == '__main__':
         result = graph.dijkstra(start, goal)
         out.write('Y\n')
         out.write(" ".join(result['path']) + '\n')
-        out.write(str(result['cost'])+'\n')
+        out.write(str(result['cost']))
     except AssertionError:
-        out.write("N\n")
+        out.write("N")
     except KeyError:
-        out.write("N\n")
+        out.write("N")
     finally:
         out.close()

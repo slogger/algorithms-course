@@ -1,0 +1,33 @@
+{
+    "fileExtensions": [".js"],
+    "requireSpaceAfterKeywords": ["do", "else"],
+    "disallowSpaceAfterKeywords": ["if", "for", "while", "switch"],
+    "disallowSpacesInFunctionExpression": {
+        "beforeOpeningRoundBrace": true
+    },
+    "maximumLineLength": 120,
+    "validateIndentation": 4,
+    "validateLineBreaks": "LF",
+    "requireParenthesesAroundIIFE": true,
+    "disallowSpacesInsideArrayBrackets": true,
+    "requireSpacesInsideObjectBrackets": "all",
+    "requireSpaceAfterObjectKeys": true,
+    "disallowSpaceAfterPrefixUnaryOperators": ["++", "--", "+", "-", "~", "!"],
+    "disallowSpaceBeforePostfixUnaryOperators": ["++", "--"],
+    "disallowSpaceBeforeBinaryOperators": [","],
+    "disallowSpacesInConditionalExpression": {
+        "afterTest": true,
+        "beforeConsequent": false,
+        "afterConsequent": false,
+        "beforeAlternate": false
+    },
+    "requireSpaceBeforeBinaryOperators": ["+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"],
+    "requireSpaceAfterBinaryOperators": [",", "+", "-", "/", "*", "=", "==", "===", "!=", "!==", ">", ">=", "<", "<=", "&&", "||"],
+    "disallowKeywords": ["with"],
+    "disallowKeywordsOnNewLine": ["else"],
+    "requireLineFeedAtFileEnd": true,
+    "disallowMultipleLineBreaks": true,
+    "disallowSpacesInsideObjectBrackets": null,
+    "disallowImplicitTypeConversion": ["string"],
+    "safeContextKeyword": "self"
+}

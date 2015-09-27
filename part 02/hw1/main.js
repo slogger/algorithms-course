@@ -12,7 +12,7 @@ class Point {
      * @arg y {Number}
      * @arg index {Number}
      */
-    constructor (x, y, index) {
+    constructor(x, y, index) {
         this.x = x;
         this.y = y;
         this.index = index;
@@ -29,7 +29,7 @@ class Edge {
      * @arg m {Point} - start point
      * @arg n {Point} - end point
      */
-    constructor (m, n) {
+    constructor(m, n) {
         this.start = m;
         this.end = n;
         this.weight = Math.abs(m.x - n.x) + Math.abs(m.y - n.y);
@@ -45,7 +45,7 @@ class Graph {
     /**
      * @arg edges {Array}
      */
-    constructor (edges) {
+    constructor(edges) {
         this.edges = edges;
     }
 }
@@ -59,7 +59,7 @@ class FullGraph extends Graph {
     /**
      * @arg points {Array}
      */
-    constructor (points) {
+    constructor(points) {
         super([]);
         points.forEach((point, i) => {
             let otherPoints = points.filter((_point) => _point !== point);
@@ -73,7 +73,7 @@ class FullGraph extends Graph {
  * @desc abstraction for SpanningTree object
  */
 class SpanningTree {
-    constructor () {
+    constructor() {
         this.tree = [];
         this.includedPoints = new Set();
         this.weight = 0;
@@ -84,8 +84,8 @@ class SpanningTree {
      * @arg edge {Edge}
      * @return {Boolean} - true if edge add to tree
      */
-    append (edge) {
-        if (!this.includedPoints.has(edge.start) || !this.includedPoints.has(edge.end)) {
+    append(edge) {
+        if(!this.includedPoints.has(edge.start) || !this.includedPoints.has(edge.end)) {
             this.tree.push(edge);
             this.includedPoints.add(edge.start);
             this.includedPoints.add(edge.end);
@@ -101,12 +101,12 @@ class SpanningTree {
      * @arg point {Point}
      * @return conjugatePoints {Array}
      */
-    conjugateOf (point) {
+    conjugateOf(point) {
         var conjugatePoints = [];
         this.tree.forEach((edge, index) => {
-            if (edge.end === point) {
+            if(edge.end === point) {
                 conjugatePoints.push(edge.start);
-            } else if (edge.start === point) {
+            } else if(edge.start === point) {
                 conjugatePoints.push(edge.end);
             }
         });
@@ -122,10 +122,10 @@ class SpanningTree {
  * @arg spanningTree {SpanningTree}
  * @return {Promise}
  */
-var kruskal = function (edges, spanningTree) {
+var kruskal = function(edges, spanningTree) {
     var promise = new Promise(
-        function (resolve, reject) {
-            if (edges.length === 0) {
+        function(resolve, reject) {
+            if(edges.length === 0) {
                 resolve(spanningTree);
             }
             spanningTree.append(edges.shift());
@@ -135,25 +135,25 @@ var kruskal = function (edges, spanningTree) {
     return promise;
 };
 
-var getPoints = function (data) {
+var getPoints = function(data) {
     data = data.split('\n');
     var count = data[0];
     var points = [];
-    for (let i = 1; i <= count; i++) {
+    for(let i = 1; i <= count; i++) {
         var coords = data[i].split(' ');
         points.push(new Point(coords[0], coords[1], i));
     }
     return points;
 };
 
-var output = function (spanningTree) {
+var output = function(spanningTree) {
     var points = [];
     var out = '';
-    for (let point of spanningTree.includedPoints) {
+    for(let point of spanningTree.includedPoints) {
         points.push(point);
     }
     points = points.sort((a, b) => a.index - b.index);
-    for (let point of points) {
+    for(let point of points) {
         let conjugatePoints = spanningTree.conjugateOf(point).sort((a, b) => a.index - b.index);
         let _out = [point.index];
         conjugatePoints.forEach((elem, i) => _out.push(elem.index));
@@ -169,8 +169,8 @@ var output = function (spanningTree) {
     });
 };
 
-var main = function (err, data) {
-    if (err) {
+var main = function(err, data) {
+    if(err) {
         console.error('Incorrect data');
     }
     var graph = new FullGraph(getPoints(data));

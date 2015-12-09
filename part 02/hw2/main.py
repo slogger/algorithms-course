@@ -71,7 +71,7 @@ class FlowNetwork(object):
         if not self.find_max_flow:
             self.max_flow(source, sink)
         flow_edges = [item for sublist in list(self.flow.values()) for item in sublist]
-        return [edge for edge in flow_edges if (edge.source != source and edge.sink != sink and edge.dir == 'direct' and edge.capacity > 0)]
+        return sorted([edge for edge in flow_edges if (edge.source != source and edge.sink != sink and edge.dir == 'direct' and edge.capacity > 0)], key=lambda edge: int(edge.source[1:]))
 
 
 
@@ -90,11 +90,15 @@ if __name__ == '__main__':
     # g.max_flow('s','t')
 
     matching = g.get_matching('s','t')
+    i = 0
     out = []
     for i in range(int(k)):
-        # print('x{}'.format(i+1))
-        out.append([edge.sink[1:] for edge in matching if 'x{}'.format(i+1) == edge.source][0])
-        # if 'x{}'.format(i+1) == edge.source:
-        #     print(edge.sink)
+        if len([edge for edge in matching if 'x{}'.format(i+1) == edge.source]) > 0:
+            edge = [edge for edge in matching if 'x{}'.format(i+1) == edge.source][0]
+            out.append(edge.sink[1:])
+        else:
+            out.append('0')
+
     print(' '.join(out))
-    # print([edge.sink for edge in matching])
+    file = open('out.txt', 'w')
+    file.write(' '.join(out))

@@ -11,6 +11,7 @@ function UnionFind(count) {
         this.roots[i] = i;
         this.ranks[i] = 0;
     }
+    console.log(this);
 }
 
 var proto = UnionFind.prototype
@@ -21,12 +22,6 @@ Object.defineProperty(proto, "length", {
     }
 })
 
-proto.makeSet = function() {
-    var n = this.roots.length;
-    this.roots.push(n);
-    this.ranks.push(0);
-    return n;
-}
 
 proto.find = function(x) {
     var x0 = x
@@ -39,6 +34,7 @@ proto.find = function(x) {
         roots[x0] = x
         x0 = y
     }
+    // console.log(x, x0);
     return x;
 }
 
@@ -60,4 +56,5 @@ proto.link = function(x, y) {
         roots[yr] = xr;
         ++ranks[xr];
     }
+    // console.log(this);
 }

@@ -20,18 +20,18 @@ class BiPartGraph {
             superSinkEdge.throughput = throughput;
             edges.push(superSourceEdge, superSinkEdge);
         })
-        // edges.filter(e => e.end.graph === 0).forEach(edge => {
-        //     console.log(edge.start === superSource);
-        // })
         console.log(edges);
+        edges.filter(e => (e.start === superSource && !e.start.isVisited)).forEach(edge => {
+            console.log(edge);
+        })
         // return mathing;
     }
 
-    findPath(config) {
-        path = [];
-        this.edges.filter(e => {e.start === config.start}).
-        return path;
-    }
+    // findPath(config) {
+    //     var path = [];
+    //     this.edges.filter(e => {e.start === config.start}).
+    //     return path;
+    // }
 }
 
 class Edge {
@@ -44,7 +44,8 @@ class Edge {
 class Point {
     constructor(index, graphNum) {
         this.index = index;
-        this.graph = graphNum
+        this.graph = graphNum;
+        this.isVisited = false;
     }
 }
 
